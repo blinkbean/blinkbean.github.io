@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>  
+<html>  
+<head>  
+<meta charset="UTF-8" />  
+<title>MODEL PAGE</title>  
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>  
+<script type="text/javascript">  
+    var Ajax = function ()  
+    {  
+        $.getJSON ("js/userinfo.txt", function (data)  
+        {  
+            $.each (data, function (i, item)  
+            {  
+                $ ("#disp").append ("<h3>" + item.name + "</h3>");  
+                $ ("#disp").append ("<p>" + item.sex + "</p>");  
+                $ ("#disp").append ("<p>" + item.email + "</p>");  
+            });  
+        });  
+    }  
+</script>  
+</head>  
+<body>  
+    <input type="button" value="Ajax提交" onclick="Ajax();" />  
+    <div id="disp"></div>  
+</body>  
+</html>  
