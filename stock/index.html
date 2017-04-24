@@ -84,7 +84,7 @@
 
     var Ajax = function ()  
     {  
-        $.getJSON ("js/data.json?"+Math.random(), function (data)  
+        $.getJSON ("js/dataa.json?"+Math.random(), function (data)  
         {  $("#disp").append("<tr><td>股票名称</td><td>代码号</td><td>数量</td><td>最大</td><td>时间</td><td>中签率</td></tr>");
         	early_time=last_time=data[0].date;
             $.each (data, function (i, item)  
