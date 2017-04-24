@@ -30,11 +30,15 @@
 			        <input id="endtime" type="text" name="endtime" data-beatpicker="true"/>
 			</div>
 		</div>
-	        <input type="submit">
+		<div class="row">
+			<div id="earlytime"></div>
+			<div id="lasttime"></div>
+		</div>
 	</form>
-	开始时间：<div id="start"></div>
-	结束时间：<div id="end"></div>
-	<button id="btn">click</button><br>
+	<form id="size" class="row">
+				全选：<input name="sanyi" type="radio" value="1" />
+				三亿以上：<input name="sanyi" type="radio" value="2" />
+		</form>
 	<button id="btn2">click</button><br>
 	<button>一个不中</button>
 	<input type="text" id="no_one" disabled="true"><br>
@@ -44,34 +48,70 @@
 	<input type="text" id="only_one" disabled="true"><br>
 	<button>至少两个</button>
 	<input type="text" id="least_two" disabled="true"><br>
-	<button>至少三个</button>
-	<input type="text" id="least_three" disabled="true"><br>
+<br>
+	<input type="button" value="Ajax提交" onclick="Ajax();" />
+	<table>
+		<div id="disp">
+		</div>
+	</table>
+	
 	</div>
+	  
 </body>
 <script>
-	var data = [0.2,0.3,0.4,0.1];
-	var count0 = 0;
-	var count1 = 0;
-	var count2 = 0;
+	function getRadioBoxValue() 
+	{ 
+		var obj = document.getElementById("size").sanyi;
+        for(i=0; i<obj.length;i++){
+			if(obj[i].checked){ 
+                return obj[i].value; 
+                } 
+            }
+            return "0" ;               
+	}	
+	var dataList = [];
+	var e_stime = 0;
+	var e_etime = 0;
+	var last_time = document.getElementById("lasttime");
+	var early_time = document.getElementById("earlytime");
 	var starttime = document.getElementById("starttime");
 	var endtime = document.getElementById("endtime");
-	var btn=document.getElementById('btn');
 	var btn2=document.getElementById('btn2');
 	var no_one=document.getElementById('no_one');
 	var at_least=document.getElementById('at_least');
 	var only_one=document.getElementById('only_one');
 	var least_two=document.getElementById('least_two');
-	var least_three=document.getElementById('least_three');
-	var more=document.getElementById('more');
+
+    var Ajax = function ()  
+    {  
+        $.getJSON ("js/data.json?"+Math.random(), function (data)  
+        {  $("#disp").append("<tr><td>股票名称</td><td>代码号</td><td>数量</td><td>最大</td><td>时间</td><td>中签率</td></tr>");
+        	early_time=last_time=data[0].date;
+            $.each (data, function (i, item)  
+            {  
+            	if(item.date>last_time){
+            		last_time=item.date
+            	}else if(item.date<early_time){
+            		early_time=item.date;
+            	};
+                if(item.date>=e_stime&&item.date<=e_etime){
+                $ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
+                dataList.push(item.rate);}
+            });
+
+        }); 
+    } 
 	btn2.onclick=function(){
+		// alert(getRadioBoxValue());
 		no_one_at_least();
 		only_one_value();
 		at_least_two();
-		at_least_three();
+		checkTime();
+
 	}
 	function no_one_at_least(){
 		let base = 1;
-		data.forEach(function(item){
+		dataList.forEach(function(item){
 			base *= (1-item);
 		});
 		no_one.value = base;
@@ -80,15 +120,15 @@
 
 	}
 	function only_one_value(){
-		let base = 1;
+		let base;
 		let last = 0;
-		for(let i=0;i<data.length;i++){
-
-			for(let j=0;j<data.length;j++){
+		for(let i=0;i<dataList.length;i++){
+			base = 1;
+			for(let j=0;j<dataList.length;j++){
 				if(i==j){continue;}
-				base*=(1-data[j]);
+				base*=(1-dataList[j]);
 			}
-			last += (data[i]*base);
+			last += (dataList[i]*base);
 
 		}
 		only_one.value = last;
@@ -98,11 +138,7 @@
 		least_two.value = 1-(count0+count1);
 		count2 = 1-(count0+count1);
 	}
-	function at_least_three(){
-		//错的
-		least_three.value = 1-(count0+count1+count2);
-	}
-	btn.onclick=function(){
+	function checkTime(){
 		var starttime_val = starttime.value;
 		var endtime_val = endtime.value;
 			if(starttime_val==""||starttime_val==null)
@@ -115,12 +151,20 @@
 			}
 			else if(starttime_val>endtime_val)
 			{
-				alert("起始时间必须大于截止时间！");
+				alert("起始时间必须小于截止时间！");
+			}else{
+				e_stime=starttime_val.replace(/-/g,'');
+				e_etime=endtime_val.replace(/-/g,'');
 			}
-		document.getElementById("start").innerHTML = starttime_val;
-		document.getElementById("end").innerHTML = endtime_val;
 		}
 		
 	
 </script>
+<style>
+#disp tr td{
+	border: 1px solid #000;
+	height: 10px;
+	padding: 5px;
+}
+</style>
 </html>
