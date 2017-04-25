@@ -1,114 +1,183 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8"/>
-    <title>股票分析</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/BeatPicker.min.css"/>
-    <link rel="stylesheet" href="documents/css/demos.css"/>
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/BeatPicker.min.js"></script>
-</head>
-<body>
-	<div class="container">
-	<div class="row">
-		<div class="inputtime col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3  col-sm-6 col-sm-offset-3">
-			<h1>股票分析</h1>
-		</div>
-	</div>
-	<form action="#" method="get">
-		<div class="row">
-			<div class="inputtime col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3  col-sm-6 col-sm-offset-3">
-					<div class="inputname">请输入起始时间</div>
-			        <input id="starttime" type="text" name="starttime" data-beatpicker="true"/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="inputtime col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3">
-					<div class="inputname">请输入截止时间</div>
-			        <input id="endtime" type="text" name="endtime" data-beatpicker="true"/>
-			</div>
-		</div>
-		<div class="row">
-			<div id="earlytime"></div>
-			<div id="lasttime"></div>
-		</div>
-	</form>
-	<form id="size" class="row">
-				全选：<input name="sanyi" type="radio" value="1" />
-				三亿以上：<input name="sanyi" type="radio" value="2" />
-		</form>
-	<button id="btn2">click</button><br>
-	<button>一个不中</button>
-	<input type="text" id="no_one" disabled="true"><br>
-	<button>至少一个</button>
-	<input type="text" id="at_least" disabled="true"><br>
-	<button>只中一个</button>
-	<input type="text" id="only_one" disabled="true"><br>
-	<button>至少两个</button>
-	<input type="text" id="least_two" disabled="true"><br>
-<br>
-	<input type="button" value="Ajax提交" onclick="Ajax();" />
-	<table>
-		<div id="disp">
-		</div>
-	</table>
-	
-	</div>
-	  
-</body>
-<script>
-	function getRadioBoxValue() 
-	{ 
-		var obj = document.getElementById("size").sanyi;
-        for(i=0; i<obj.length;i++){
-			if(obj[i].checked){ 
-                return obj[i].value; 
-                } 
-            }
-            return "0" ;               
-	}	
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>股票分析</title> 
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css" /> 
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" /> 
+  <script src="js/jquery-1.8.3.min.js"></script> 
+  <script src="bootstrap/js/bootstrap.js"></script> 
+  <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script> 
+  <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script> 
+ </head> 
+ <body> 
+
+  <div class="container"> 
+   <div class="gtitle"> 
+     <h1>股票分析</h1> 
+   </div>
+   <div class="gcontent">
+   <div class="leftbar">
+		<form action="#" method="get">
+    <div class="control-group">
+    <p class="desctime">起始时间：</p> 
+     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd"> 
+      <input id="dtp_input1" size="16" type="text" value="" readonly="" placeholder="开始时间"/> 
+      <span class="add-on"><i class="icon-remove"></i></span> 
+      <span class="add-on"><i class="icon-th"></i></span>
+      <div id="earlytime"></div> 
+     </div> 
+    </div> 
+    <div class="control-group">
+		<p class="desctime">终止时间：</p>
+     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd"> 
+      <input id="dtp_input2" size="16" type="text" value="" readonly="" placeholder="截止时间"/> 
+      <span class="add-on"><i class="icon-remove"></i></span> 
+      <span class="add-on"><i class="icon-th"></i></span>
+      <div id="lasttime"></div> 
+     </div> 
+    </div> 
+   </form> 
+   <form id="size">
+   <div class="sizeline">
+    	<input id="sanyi1" name="sanyi" type="radio" value="1" checked/>
+    	<label for="sanyi1">全选</label> 
+    </div>
+    <div class="sizeline">
+    	<input id="sanyi2" name="sanyi" type="radio" value="2" />
+    	<label for="sanyi2">三亿以下</label>
+    </div>
+   </form>
+   </div>
+   <div class="rightbar">
+		 <button>一个不中</button> 
+	   <input type="text" id="no_one" disabled="true" />
+	   <br /> 
+	   <button>至少一个</button> 
+	   <input type="text" id="at_least" disabled="true" />
+	   <br /> 
+	   <button>只中一个</button> 
+	   <input type="text" id="only_one" disabled="true" />
+	   <br /> 
+	   <button>至少两个</button> 
+	   <input type="text" id="least_two" disabled="true" />
+	   <br /> 
+	   <br /> 
+	   <input type="button" value="查看结果" onclick="Ajax();" />
+	   <input type="button" value="重新计算" onclick="Reset();" /> 
+   </div> 
+   </div>
+   <!-- <button id="btn2">click</button> -->
+  </div>
+  <div class="container">
+		<table id="disp"></table>
+  </div> 
+  <script>
 	var dataList = [];
+	var filepath = "js/dataa.json?";
 	var e_stime = 0;
 	var e_etime = 0;
-	var last_time = document.getElementById("lasttime");
-	var early_time = document.getElementById("earlytime");
-	var starttime = document.getElementById("starttime");
-	var endtime = document.getElementById("endtime");
-	var btn2=document.getElementById('btn2');
-	var no_one=document.getElementById('no_one');
-	var at_least=document.getElementById('at_least');
-	var only_one=document.getElementById('only_one');
-	var least_two=document.getElementById('least_two');
+	var last_time = 0;
+	var early_time = 0;
+	var earlytime = document.getElementById("earlytime");
+	var lasttime = document.getElementById("lasttime");
+	var starttime = document.getElementById("dtp_input1");
+	var endtime = document.getElementById("dtp_input2");
+	//var btn2 = document.getElementById('btn2');
+	var no_one = document.getElementById('no_one');
+	var at_least = document.getElementById('at_least');
+	var only_one = document.getElementById('only_one');
+	var least_two = document.getElementById('least_two');
 
-    var Ajax = function ()  
-    {  
-        $.getJSON ("js/dataa.json?"+Math.random(), function (data)  
-        {  $("#disp").append("<tr><td>股票名称</td><td>代码号</td><td>数量</td><td>最大</td><td>时间</td><td>中签率</td></tr>");
-        	early_time=last_time=data[0].date;
-            $.each (data, function (i, item)  
-            {  
-            	if(item.date>last_time){
+	window.onload = function(){
+		$("#dtp_input1").focus(function(){ $("#earlytime").css("visibility","visible");}).blur(function(){
+  	$("#earlytime").css("visibility","hidden");});
+			$("#dtp_input2").focus(function(){ $("#lasttime").css("visibility","visible");}).blur(function(){
+  	$("#lasttime").css("visibility","hidden");});
+		//获取数据最早和最迟时间，以供选择
+		$.getJSON (filepath+Math.random(), function (data) {
+			early_time=last_time=data[0].date;
+        		$.each (data,function (i,item)
+        		{
+							if(item.date>last_time){
             		last_time=item.date
             	}else if(item.date<early_time){
             		early_time=item.date;
             	};
-                if(item.date>=e_stime&&item.date<=e_etime){
-                $ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
-                dataList.push(item.rate);}
-            });
-
-        }); 
-    } 
-	btn2.onclick=function(){
-		// alert(getRadioBoxValue());
-		no_one_at_least();
-		only_one_value();
-		at_least_two();
-		checkTime();
-
+        		});
+        	//变换时间格式，年月日。
+        	var patrn=/(\d{4})(\d{2})(\d{2})/; 
+        	var ee=patrn.exec(early_time);
+        	var ll=patrn.exec(last_time);
+        	earlytime.innerHTML="最早从"+ee[1]+"年"+ee[2]+"月"+ee[3]+"日开始";
+        	lasttime.innerHTML="最晚到"+ll[1]+"年"+ll[2]+"月"+ll[3]+"日结束";
+		});
 	}
+    var Ajax = function ()  
+    {  
+    		checkTime();
+    		if(!document.getElementById("disp").hasChildNodes()){
+    			dataList = [];
+        $.getJSON (filepath+Math.random(), function (data)  
+        {
+        	$("#disp").append("<tr><td>股票名称</td><td>代码号</td><td>数量</td><td>最大</td><td>时间</td><td>中签率</td></tr>");
+            $.each (data, function (i, item)  
+            {
+              if(item.date>=e_stime&&item.date<=e_etime){
+              	if(getRadioBoxValue()==2){
+              		if(item.size<30000){
+              			$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
+              			dataList.push(item.rate);
+              		}
+
+              	}else if(getRadioBoxValue()==1){
+              		$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
+              			dataList.push(item.rate);
+              	};
+              }
+            });
+        });
+        } 
+        setTimeout(function () {
+　　　　　no_one_at_least();
+					only_one_value();
+					at_least_two();
+　　　　}, 1100);
+    }
+    var Reset = function(){
+    	var f = document.getElementById("disp"); 
+			var childs = f.childNodes; 
+			for(var i = 0; i < childs.length; i++) { 
+			alert("确定要重新计算结果？"); 
+			f.removeChild(childs[i]); 
+			}
+
+			dataList = [];
+			starttime.value = "";
+			endtime.value = "";
+			no_one.value = 0;
+			at_least.value = 0;
+			only_one.value = 0;
+			least_two.value = 0;
+
+    }
+    function getRadioBoxValue() {
+		var obj = document.getElementById("size").sanyi;
+		for (i = 0; i < obj.length; i++) {
+			if (obj[i].checked) {
+				return obj[i].value;
+			}
+		}
+		return "0";
+	} 
+  // click2点击事件
+	// btn2.onclick=function(){
+	// 	// alert(getRadioBoxValue());
+	// 	no_one_at_least();
+	// 	only_one_value();
+	// 	at_least_two();
+	// 	checkTime();
+	// }
 	function no_one_at_least(){
 		let base = 1;
 		dataList.forEach(function(item){
@@ -144,27 +213,113 @@
 			if(starttime_val==""||starttime_val==null)
 			{
 				alert("请输入起始时间！");
+				return;
 			}
 			else if(endtime_val==""||endtime_val==null)
 			{
 				alert("请输入截止时间！");
+				return;
 			}
 			else if(starttime_val>endtime_val)
 			{
 				alert("起始时间必须小于截止时间！");
+				return;
 			}else{
 				e_stime=starttime_val.replace(/-/g,'');
 				e_etime=endtime_val.replace(/-/g,'');
 			}
 		}
-		
-	
-</script>
+</script> 
+<script type="text/javascript">
+	$('.form_date').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    }); 
+</script> 
 <style>
-#disp tr td{
-	border: 1px solid #000;
-	height: 10px;
-	padding: 5px;
+.gtitle{
+	margin: 60px 0;
+	text-align: center;
 }
-</style>
+.gcontent{
+	text-align: center;
+}
+.leftbar{
+	display: inline-block;
+}
+.rightbar{
+	display: inline-block;
+}
+.desctime{
+	margin: 0;
+	display: none;
+}
+#disp{
+	margin: 60px auto;
+	border-collapse:collapse;
+	font-size: 15px; 
+}
+#disp tr{
+	font-weight: 700;
+}
+#disp tr td{
+	border: 1px solid rgba(150,150,150,0.4);
+	height: 10px;
+	padding: 5px 20px;
+}
+#earlytime{
+	font-size: 10px;
+	color: red;
+	visibility:hidden;
+}
+#lasttime{
+	font-size: 10px;
+	color: red;
+	visibility:hidden;
+}
+#size{
+	padding: 0 40px;
+	line-height: 15px;	
+}
+.sizeline{
+	display: block;
+}
+#size label{
+	margin: 0;
+	font-size: 18px;
+	display: inline-block;
+}
+#size input{
+	margin-right: 15px;
+	float: left;
+}
+input[type="text"] {
+    background-color: #FFFBFB;
+    border: 1px solid #BBBBBB;
+    margin: 2px;
+    padding: 5px;
+    width: 167px;
+}
+
+button:hover, input[type="button"]:hover {
+    background-color: #B53636;
+}
+button, input[type="button"] {
+    background-color: #D36161;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 14px arial,serif;
+    margin: 3px;
+    padding: 6px;
+    width: 72px;
+}
+</style> 
+ </body>
 </html>
