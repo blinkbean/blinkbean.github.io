@@ -5,10 +5,10 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
   <meta content="yes" name="apple-mobile-web-app-capable" /> 
   <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
-  <meta content="telephone=no" name="format-detection" /> 
+  <meta content="telephone=no" name="format-detection" />  
   <title>股票分析</title> 
   <link rel="stylesheet" href="bootstrap/css/bootstrap.css" /> 
-  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" /> 
+  <link href="bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" /> 
   <script src="js/jquery-1.8.3.min.js"></script> 
   <script src="bootstrap/js/bootstrap.js"></script> 
   <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script> 
@@ -18,27 +18,28 @@
 
   <div class="container"> 
    <div class="gtitle"> 
-     <h1>股票分析</h1> 
+     <h1>股票分析</h1>
+     <div style="padding: 0 15px;font-size:10px;">使用说明：选择正确日期区间，点击<p style="color:red;display:inline-block;">查看结果</p>,每次计算之前需要点击<p style="color:red;display:inline-block;">重新计算</p>清空上一次的数据。</div>
    </div>
    <div class="gcontent">
    <div class="leftbar">
 		<form action="#" method="get">
     <div class="control-group">
-    <p class="desctime">起始时间：</p> 
+    <div id="timedesc1">开始时间：</div> 
+    <div id="earlytime"></div> 
      <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd"> 
       <input id="dtp_input1" size="16" type="text" value="" readonly="" placeholder="开始时间"/> 
       <span class="add-on"><i class="icon-remove"></i></span> 
-      <span class="add-on"><i class="icon-th"></i></span>
-      <div id="earlytime"></div> 
+      <span class="add-on"><i class="icon-th"></i></span> 
      </div> 
     </div> 
     <div class="control-group">
-		<p class="desctime">终止时间：</p>
+    <div id="timedesc2">截止时间：</div> 
+    <div id="lasttime"></div> 
      <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd"> 
       <input id="dtp_input2" size="16" type="text" value="" readonly="" placeholder="截止时间"/> 
       <span class="add-on"><i class="icon-remove"></i></span> 
       <span class="add-on"><i class="icon-th"></i></span>
-      <div id="lasttime"></div> 
      </div> 
     </div> 
    </form> 
@@ -54,16 +55,16 @@
    </form>
    </div>
    <div class="rightbar">
-		 <button>一个不中</button> 
+	   <div class="resultdesc">一个不中</div> 
 	   <input type="text" id="no_one" disabled="true" />
 	   <br /> 
-	   <button>至少一个</button> 
+	   <div class="resultdesc">至少一个</div> 
 	   <input type="text" id="at_least" disabled="true" />
 	   <br /> 
-	   <button>只中一个</button> 
+	   <div class="resultdesc">只中一个</div> 
 	   <input type="text" id="only_one" disabled="true" />
 	   <br /> 
-	   <button>至少两个</button> 
+	   <div class="resultdesc">至少两个</div> 
 	   <input type="text" id="least_two" disabled="true" />
 	   <br /> 
 	   <br /> 
@@ -78,7 +79,7 @@
   </div> 
   <script>
 	var dataList = [];
-	var filepath = "https://liyuxinger.github.io/stock/js/dataa.json?";
+	var filepath = "js/dataa.json?";
 	var e_stime = 0;
 	var e_etime = 0;
 	var last_time = 0;
@@ -94,10 +95,10 @@
 	var least_two = document.getElementById('least_two');
 
 	window.onload = function(){
-		$("#dtp_input1").focus(function(){ $("#earlytime").css("visibility","visible");}).blur(function(){
-  	$("#earlytime").css("visibility","hidden");});
-			$("#dtp_input2").focus(function(){ $("#lasttime").css("visibility","visible");}).blur(function(){
-  	$("#lasttime").css("visibility","hidden");});
+		$("#dtp_input1").focus(function(){ $("#earlytime").css("display","block");$("#timedesc1").css("display","none");}).blur(function(){
+  			$("#earlytime").css("display","none");$("#timedesc1").css("display","block");});
+		$("#dtp_input2").focus(function(){ $("#lasttime").css("display","block");$("#timedesc2").css("display","none");}).blur(function(){
+  			$("#lasttime").css("display","none");$("#timedesc2").css("display","block");});
 		//获取数据最早和最迟时间，以供选择
 		$.getJSON (filepath+Math.random(), function (data) {
 			early_time=last_time=data[0].date;
@@ -119,11 +120,11 @@
 	}
     var Ajax = function ()  
     {  
-    		checkTime();
-    		if(!document.getElementById("disp").hasChildNodes()){
-    			dataList = [];
+		if(checkTime()){
+		if(!document.getElementById("disp").hasChildNodes()){
+			dataList = [];
         $.getJSON (filepath+Math.random(), function (data)  
-        {
+        {	
         	$("#disp").append("<tr><td>股票名称</td><td>代码号</td><td>数量</td><td>最大</td><td>时间</td><td>中签率</td></tr>");
             $.each (data, function (i, item)  
             {
@@ -146,7 +147,8 @@
 　　　　　no_one_at_least();
 					only_one_value();
 					at_least_two();
-　　　　}, 1100);
+　　　　}, 500);
+      };
     }
     var Reset = function(){
     	var f = document.getElementById("disp"); 
@@ -217,20 +219,21 @@
 			if(starttime_val==""||starttime_val==null)
 			{
 				alert("请输入起始时间！");
-				return;
+				return false;
 			}
 			else if(endtime_val==""||endtime_val==null)
 			{
 				alert("请输入截止时间！");
-				return;
+				return false;
 			}
 			else if(starttime_val>endtime_val)
 			{
 				alert("起始时间必须小于截止时间！");
-				return;
+				return false;
 			}else{
 				e_stime=starttime_val.replace(/-/g,'');
 				e_etime=endtime_val.replace(/-/g,'');
+				return true;
 			}
 		}
 </script> 
@@ -247,8 +250,14 @@
     }); 
 </script> 
 <style>
+form {
+    margin: 0 0 10px;
+}
+.control-group {
+    margin-bottom: 0;
+}
 .gtitle{
-	margin: 60px 0;
+	margin: 60px 0 20px 0;
 	text-align: center;
 }
 .gcontent{
@@ -256,13 +265,17 @@
 }
 .leftbar{
 	display: inline-block;
+	margin-left: -10px;
 }
 .rightbar{
 	display: inline-block;
 }
-.desctime{
-	margin: 0;
-	display: none;
+.resultdesc{
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 30px;
+	font-family: Georgia,Serif;
+	display: inline-block;
 }
 #disp{
 	margin: 60px auto;
@@ -270,25 +283,35 @@
 	font-size: 15px; 
 }
 #disp tr{
-	font-weight: 700;
+	text-align: center;
+	font-weight: 600;
+}
+#disp td{
+	white-space:nowrap; 
+	border: 1px solid rgba(150,150,150,0.4);
+	height: 10px;
+	font-size: 1em;
+	font-weight: 400;
+	padding: 5px 4px;
 }
 #disp tr:nth-child(2n+1){
 	background-color: #eeffee;
 }
-#disp tr td{
-	border: 1px solid rgba(150,150,150,0.4);
-	height: 10px;
-	padding: 5px 20px;
+#timedesc1,#timedesc2{
+	text-align: left;
+	line-height: 26px;
+	font-size: 16px;
+	padding: 3px;
+	font-family: 700;
 }
-#earlytime{
-	font-size: 10px;
+#earlytime,#lasttime{
+	margin-left: 2px;
+	text-align: left;
+	line-height: 26px;
+	padding: 3px;
+	font-size: 14px;
 	color: red;
-	visibility:hidden;
-}
-#lasttime{
-	font-size: 10px;
-	color: red;
-	visibility:hidden;
+	display: none;
 }
 #size{
 	padding: 0 40px;
@@ -296,6 +319,9 @@
 }
 .sizeline{
 	display: block;
+}
+.sizeline label{
+	font-weight: 700;	
 }
 #size label{
 	margin: 0;
@@ -313,7 +339,6 @@ input[type="text"] {
     padding: 5px;
     width: 167px;
 }
-
 button:hover, input[type="button"]:hover {
     background-color: #B53636;
 }
@@ -324,8 +349,8 @@ button, input[type="button"] {
     cursor: pointer;
     font: bold 14px arial,serif;
     margin: 3px;
-    padding: 4px;
-    width: 74px;
+    padding: 6px;
+    width: 72px;
 }
 </style> 
  </body>
