@@ -27,43 +27,15 @@
 	}
 	h1{
 		margin: 60px 0 40px 0;
+		text-align: center;
 	}
-	span{
+	p{
 		display: inline-block;
-		-webkit-animation-name: "buttonLight";
-		-webkit-animation-duration: 15s;
-		-webkit-animation-iteration-count: infinite;
-		transition: all 0.5s ease-out;
-		-moz-transition: all 0.5s ease-out;
-		-webkit-transition: all 0.5s ease-out;
-		-o-transition: all 0.5s ease-out;
 		opacity: 0;
 	}
 	.kong{
 		display: block;
 	}
-	  @-webkit-keyframes 'buttonLight' {
-     from {
-       -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.1) inset, 0 0 3px rgba(220, 120, 200, 0.2);
-       color: red;
-     }
-     25% {
-       -webkit-box-shadow: 0 0 10px rgba(255, 155, 255, 0.1) inset, 0 0 8px rgba(120, 120, 200, 0.2);
-       color: orange;
-    }
-    50% {
-      -webkit-box-shadow: 0 0 5px rgba(155, 255, 255, 0.1) inset, 0 0 3px rgba(220, 120, 100, 0.2);
-      color: green;
-    }
-    75% {
-      -webkit-box-shadow: 0 0 10px rgba(255, 155, 255, 0.1) inset, 0 0 8px rgba(120, 120, 200, 0.2); 
-      color: blue;
-    }
-   to {
-     -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.1) inset, 0 0 3px rgba(220, 120, 200, 0.2);
-     color: purple;
-    	}
-  		}
 </style>
 <body>
 	<div class="box">
@@ -83,11 +55,11 @@ var str="李豆豆,等你，在雨中，在造虹的雨中,蝉声沉落，蛙声
 			div.innerHTML+='</br><div class="kong">&nbsp;</div>';
 			index++;
 		}
-		div.innerHTML+='<span>'+str[index]+'</span>';
+		div.innerHTML+='<p>'+str[index]+'</p>';
 		index++;
 	}while(index<str.length)
 var timeid=setInterval(function(){
-	var pa=document.getElementsByTagName('span');
+	var pa=document.getElementsByTagName('p');
 	if(index2<pa.length){
 		
 			pa[index2].style.opacity=1;
@@ -114,7 +86,7 @@ setInterval(function(){
 		em[i].style.left=parseInt(em[i].style.left)-i/2*a+'px';
 		em[i].style.top=parseInt(em[i].style.top)+i/1.5*b+'px';
 		var clientHeight=document.documentElement.clientHeight;
-		if(parseInt(em[i].style.left)<30||(parseInt(em[i].style.top)>clientHeight-30))
+		if(parseInt(em[i].style.left)<130||(parseInt(em[i].style.top)>clientHeight-130))
 			document.body.removeChild(em[i]);
 		
 	}
