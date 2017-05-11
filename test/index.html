@@ -1,357 +1,94 @@
 <!DOCTYPE html>
-<html>
- <head> 
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-  <meta content="yes" name="apple-mobile-web-app-capable" /> 
-  <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
-  <meta content="telephone=no" name="format-detection" />  
-  <title>股票分析</title> 
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.css" /> 
-  <link href="bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" /> 
-  <script src="js/jquery-1.8.3.min.js"></script> 
-  <script src="bootstrap/js/bootstrap.js"></script> 
-  <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script> 
-  <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script> 
- </head> 
- <body> 
-
-  <div class="container"> 
-   <div class="gtitle"> 
-     <h1>股票分析</h1>
-     <div style="padding: 0 15px;font-size:10px;">使用说明：选择正确日期区间，点击<p style="color:red;display:inline-block;">查看结果</p>,每次计算之前需要点击<p style="color:red;display:inline-block;">重新计算</p>清空上一次的数据。</div>
-   </div>
-   <div class="gcontent">
-   <div class="leftbar">
-		<form action="#" method="get">
-    <div class="control-group">
-    <div id="timedesc1">开始时间：</div> 
-    <div id="earlytime"></div> 
-     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd"> 
-      <input id="dtp_input1" size="16" type="text" value="" readonly="" placeholder="开始时间"/> 
-      <span class="add-on"><i class="icon-remove"></i></span> 
-      <span class="add-on"><i class="icon-th"></i></span> 
-     </div> 
-    </div> 
-    <div class="control-group">
-    <div id="timedesc2">截止时间：</div> 
-    <div id="lasttime"></div> 
-     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd"> 
-      <input id="dtp_input2" size="16" type="text" value="" readonly="" placeholder="截止时间"/> 
-      <span class="add-on"><i class="icon-remove"></i></span> 
-      <span class="add-on"><i class="icon-th"></i></span>
-     </div> 
-    </div> 
-   </form> 
-   <form id="size">
-   <div class="sizeline">
-    	<input id="sanyi1" name="sanyi" type="radio" value="1" checked/>
-    	<label for="sanyi1">全选</label> 
-    </div>
-    <div class="sizeline">
-    	<input id="sanyi2" name="sanyi" type="radio" value="2" />
-    	<label for="sanyi2">三亿以下</label>
-    </div>
-   </form>
-   </div>
-   <div class="rightbar">
-	   <div class="resultdesc">一个不中</div> 
-	   <input type="text" id="no_one" disabled="true" />
-	   <br /> 
-	   <div class="resultdesc">至少一个</div> 
-	   <input type="text" id="at_least" disabled="true" />
-	   <br /> 
-	   <div class="resultdesc">只中一个</div> 
-	   <input type="text" id="only_one" disabled="true" />
-	   <br /> 
-	   <div class="resultdesc">至少两个</div> 
-	   <input type="text" id="least_two" disabled="true" />
-	   <br /> 
-	   <br /> 
-	   <input type="button" value="查看结果" onclick="Ajax();" />
-	   <input type="button" value="重新计算" onclick="Reset();" /> 
-   </div> 
-   </div>
-   <!-- <button id="btn2">click</button> -->
-  </div>
-  <div class="container">
-		<table id="disp"></table>
-  </div> 
-  <script>
-	var dataList = [];
-	var filepath = "js/dataa.json?";
-	var e_stime = 0;
-	var e_etime = 0;
-	var last_time = 0;
-	var early_time = 0;
-	var earlytime = document.getElementById("earlytime");
-	var lasttime = document.getElementById("lasttime");
-	var starttime = document.getElementById("dtp_input1");
-	var endtime = document.getElementById("dtp_input2");
-	//var btn2 = document.getElementById('btn2');
-	var no_one = document.getElementById('no_one');
-	var at_least = document.getElementById('at_least');
-	var only_one = document.getElementById('only_one');
-	var least_two = document.getElementById('least_two');
-
-	window.onload = function(){
-		$("#dtp_input1").focus(function(){ $("#earlytime").css("display","block");$("#timedesc1").css("display","none");}).blur(function(){
-  			$("#earlytime").css("display","none");$("#timedesc1").css("display","block");});
-		$("#dtp_input2").focus(function(){ $("#lasttime").css("display","block");$("#timedesc2").css("display","none");}).blur(function(){
-  			$("#lasttime").css("display","none");$("#timedesc2").css("display","block");});
-		//获取数据最早和最迟时间，以供选择
-		$.getJSON (filepath+Math.random(), function (data) {
-			early_time=last_time=data[0].date;
-        		$.each (data,function (i,item)
-        		{
-							if(item.date>last_time){
-            		last_time=item.date
-            	}else if(item.date<early_time){
-            		early_time=item.date;
-            	};
-        		});
-        	//变换时间格式，年月日。
-        	var patrn=/(\d{4})(\d{2})(\d{2})/; 
-        	var ee=patrn.exec(early_time);
-        	var ll=patrn.exec(last_time);
-        	earlytime.innerHTML="最早从"+ee[1]+"年"+ee[2]+"月"+ee[3]+"日开始";
-        	lasttime.innerHTML="最晚到"+ll[1]+"年"+ll[2]+"月"+ll[3]+"日结束";
-		});
-	}
-    var Ajax = function ()  
-    {  
-		if(checkTime()){
-		if(!document.getElementById("disp").hasChildNodes()){
-			dataList = [];
-        $.getJSON (filepath+Math.random(), function (data)  
-        {	
-        	$("#disp").append("<tr><td>股票名称</td><td>代码号</td><td>数量</td><td>最大</td><td>时间</td><td>中签率</td></tr>");
-            $.each (data, function (i, item)  
-            {
-              if(item.date>=e_stime&&item.date<=e_etime){
-              	if(getRadioBoxValue()==2){
-              		if(item.size<30000){
-              			$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
-              			dataList.push(item.rate);
-              		}
-
-              	}else if(getRadioBoxValue()==1){
-              		$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
-              			dataList.push(item.rate);
-              	};
-              }
-            });
-        });
-        } 
-        setTimeout(function () {
-　　　　　no_one_at_least();
-					only_one_value();
-					at_least_two();
-　　　　}, 500);
-      };
-    }
-    var Reset = function(){
-    	var f = document.getElementById("disp"); 
-			var childs = f.childNodes; 
-			for(var i = 0; i < childs.length; i++) { 
-			alert("确定要重新计算结果？"); 
-			f.removeChild(childs[i]); 
-			}
-
-			dataList = [];
-			starttime.value = "";
-			endtime.value = "";
-			no_one.value = 0;
-			at_least.value = 0;
-			only_one.value = 0;
-			least_two.value = 0;
-
-    }
-    function getRadioBoxValue() {
-		var obj = document.getElementById("size").sanyi;
-		for (i = 0; i < obj.length; i++) {
-			if (obj[i].checked) {
-				return obj[i].value;
-			}
-		}
-		return "0";
-	} 
-  // click2点击事件
-	// btn2.onclick=function(){
-	// 	// alert(getRadioBoxValue());
-	// 	no_one_at_least();
-	// 	only_one_value();
-	// 	at_least_two();
-	// 	checkTime();
-	// }
-	function no_one_at_least(){
-		let base = 1;
-		dataList.forEach(function(item){
-			base *= (1-item);
-		});
-		no_one.value = base;
-		count0 = base;
-		at_least.value = 1 - base;
-
-	}
-	function only_one_value(){
-		let base;
-		let last = 0;
-		for(let i=0;i<dataList.length;i++){
-			base = 1;
-			for(let j=0;j<dataList.length;j++){
-				if(i==j){continue;}
-				base*=(1-dataList[j]);
-			}
-			last += (dataList[i]*base);
-
-		}
-		only_one.value = last;
-		count1 = last;
-	}
-	function at_least_two(){
-		least_two.value = 1-(count0+count1);
-		count2 = 1-(count0+count1);
-	}
-	function checkTime(){
-		var starttime_val = starttime.value;
-		var endtime_val = endtime.value;
-			if(starttime_val==""||starttime_val==null)
-			{
-				alert("请输入起始时间！");
-				return false;
-			}
-			else if(endtime_val==""||endtime_val==null)
-			{
-				alert("请输入截止时间！");
-				return false;
-			}
-			else if(starttime_val>endtime_val)
-			{
-				alert("起始时间必须小于截止时间！");
-				return false;
-			}else{
-				e_stime=starttime_val.replace(/-/g,'');
-				e_etime=endtime_val.replace(/-/g,'');
-				return true;
-			}
-		}
-</script> 
-<script type="text/javascript">
-	$('.form_date').datetimepicker({
-    language:  'zh-CN',
-    weekStart: 1,
-    todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    }); 
-</script> 
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>
+	流星</title>
+</head>
 <style>
-form {
-    margin: 0 0 10px;
-}
-.control-group {
-    margin-bottom: 0;
-}
-.gtitle{
-	margin: 60px 0 20px 0;
-	text-align: center;
-}
-.gcontent{
-	text-align: center;
-}
-.leftbar{
-	display: inline-block;
-	margin-left: -10px;
-}
-.rightbar{
-	display: inline-block;
-}
-.resultdesc{
-	font-size: 16px;
-	font-weight: 800;
-	line-height: 30px;
-	font-family: Georgia,Serif;
-	display: inline-block;
-}
-#disp{
-	margin: 60px auto;
-	border-collapse:collapse;
-	font-size: 15px; 
-}
-#disp tr{
-	text-align: center;
-	font-weight: 600;
-}
-#disp td{
-	white-space:nowrap; 
-	border: 1px solid rgba(150,150,150,0.4);
-	height: 10px;
-	font-size: 1em;
-	font-weight: 400;
-	padding: 5px 4px;
-}
-#disp tr:nth-child(2n+1){
-	background-color: #eeffee;
-}
-#timedesc1,#timedesc2{
-	text-align: left;
-	line-height: 26px;
-	font-size: 16px;
-	padding: 3px;
-	font-family: 700;
-}
-#earlytime,#lasttime{
-	margin-left: 2px;
-	text-align: left;
-	line-height: 26px;
-	padding: 3px;
-	font-size: 14px;
-	color: red;
-	display: none;
-}
-#size{
-	padding: 0 40px;
-	line-height: 15px;	
-}
-.sizeline{
-	display: block;
-}
-.sizeline label{
-	font-weight: 700;	
-}
-#size label{
-	margin: 0;
-	font-size: 18px;
-	display: inline-block;
-}
-#size input{
-	margin-right: 15px;
-	float: left;
-}
-input[type="text"] {
-    background-color: #FFFBFB;
-    border: 1px solid #BBBBBB;
-    margin: 2px;
-    padding: 5px;
-    width: 167px;
-}
-button:hover, input[type="button"]:hover {
-    background-color: #B53636;
-}
-button, input[type="button"] {
-    background-color: #D36161;
-    border: medium none;
-    color: #FFFFFF;
-    cursor: pointer;
-    font: bold 14px arial,serif;
-    margin: 3px;
-    padding: 6px;
-    width: 72px;
-}
-</style> 
- </body>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background-color: #000;
+		color: #fff;
+	}
+	em{
+		position: absolute;
+	}
+	.box{
+		text-align: center;
+		width: 80%;
+		font-size: 1.5em;
+		line-height: 60px;
+		margin: 0 auto;
+		line-height: 24px;
+	}
+	h1{
+		margin: 60px 0 40px 0;
+	}
+	p{
+		display: inline-block;
+		opacity: 0;
+	}
+	.kong{
+		display: block;
+	}
+</style>
+<body>
+	<div class="box">
+		<h1>等你，在雨中</h1>
+	</div>
+</body>
+<script>
+var str="李豆豆,等你，在雨中，在造虹的雨中,蝉声沉落，蛙声升起,一池的红莲如红焰，在雨中,你来不来都一样，竟感觉,每朵莲都像你,尤其隔着黄昏，隔着这样的细雨,永恒，刹那，刹那，永恒,等你，在时间之外，在时间之外，等你,在刹那，在永恒,如果你的手在我的手里，此刻,如果你的清芬,在我的鼻孔，我会说，小情人,诺，这只手应该采莲，在吴宫,这只手应该,摇一柄桂浆，在木兰舟中,一颗星悬在科学馆的飞檐,耳坠子一般的悬着,瑞士表说都七点了,忽然你走来,步雨后的红莲，翩翩，你走来,像一首小令,从一则爱情的典故里你走来,从姜白石的词里，有韵地，你走来";
+	var a = 3;
+	var b = 5;
+	var index = 0;
+	var index2 = 0;
+	var div=document.getElementsByTagName('div')[0];
+	do{
+		if(str[index]==','||str[index]=='.')
+		{
+			div.innerHTML+='</br><div class="kong">&nbsp;</div>';
+			index++;
+		}
+		div.innerHTML+='<p>'+str[index]+'</p>';
+		index++;
+	}while(index<str.length)
+var timeid=setInterval(function(){
+	var pa=document.getElementsByTagName('p');
+	if(index2<pa.length){
+		
+			pa[index2].style.opacity=1;
+			index2++;
+		
+	}else{
+			clearInterval(timeid);
+		}
+},400);
+setInterval(function(){
+	var em = document.createElement('em');
+	Math.random()>0.7?em.innerHTML='/':em.innerHTML='*';
+	var clientWidth = document.documentElement.clientWidth;
+
+	em.style.left=Math.random()*parseInt(clientWidth-100)+50+'px';
+	em.style.top=Math.random()*100+'px';
+	document.body.appendChild(em);
+},300);
+var em = document.getElementsByTagName('em');
+
+setInterval(function(){
+	
+	for(var i=0;i<em.length;i++){
+		em[i].style.left=parseInt(em[i].style.left)-i/2*a+'px';
+		em[i].style.top=parseInt(em[i].style.top)+i/1.5*b+'px';
+		var clientHeight=document.documentElement.clientHeight;
+		if(parseInt(em[i].style.left)<130||(parseInt(em[i].style.top)>clientHeight-130))
+			document.body.removeChild(em[i]);
+		
+	}
+},40);
+</script>
 </html>
