@@ -78,7 +78,6 @@
 		<table id="disp"></table>
   </div> 
   <script>
-  	var accountNum=1;
 	var dataList = [];
 	var filepath = "js/dataa.json?";
 	var e_stime = 0;
@@ -94,6 +93,7 @@
 	var at_least = document.getElementById('at_least');
 	var only_one = document.getElementById('only_one');
 	var least_two = document.getElementById('least_two');
+
 	window.onload = function(){
 		$("#dtp_input1").focus(function(){ $("#earlytime").css("display","block");$("#timedesc1").css("display","none");}).blur(function(){
   			$("#earlytime").css("display","none");$("#timedesc1").css("display","block");});
@@ -131,27 +131,13 @@
               if(item.date>=e_stime&&item.date<=e_etime){
               	if(getRadioBoxValue()==2){
               		if(item.size<30000){
-              			$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");
-              			if(parseInt(item.num/600000)>0){
-              				// dataList.push(item.rate*item.max*10);
-              				dataList.push(1-Math.pow((1-item.rate/100),item.max*accountNum*10));
-              			}else{
-              				// dataList.push(item.rate*item.max*20);
-              				dataList.push(1-Math.pow((1-item.rate/100),item.max*accountNum*20));
-              			}	
-              			
+              			$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
+              			dataList.push(item.rate);
               		}
 
               	}else if(getRadioBoxValue()==1){
-              		$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");
-
-              		if(parseInt(item.num/600000)>0){
-              				var qqq=1-Math.pow((1-item.rate/100),item.max*accountNum*10)
-              				dataList.push(qqq);
-              			}else{
-              				var www=1-Math.pow((1-item.rate/100),item.max*accountNum*20)
-              				dataList.push(www);
-              			}
+              		$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");	
+              			dataList.push(item.rate);
               	};
               }
             });
