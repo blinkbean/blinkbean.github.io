@@ -23,34 +23,43 @@
    </div>
    <div class="gcontent">
    <div class="leftbar">
-		<form action="#" method="get">
+	<form action="#" method="get">
     <div class="control-group">
-    <div id="timedesc1">开始时间：</div> 
-    <div id="earlytime"></div> 
-     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd"> 
-      <input id="dtp_input1" size="16" type="text" value="" readonly="" placeholder="开始时间"/> 
-      <span class="add-on"><i class="icon-remove"></i></span> 
-      <span class="add-on"><i class="icon-th"></i></span> 
-     </div> 
+	    <div id="timedesc1">开始时间：</div> 
+	    <div id="earlytime"></div> 
+	     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd"> 
+	      <input id="dtp_input1" size="16" type="text" value="" readonly="" placeholder="开始时间"/> 
+	      <span class="add-on"><i class="icon-remove"></i></span> 
+	      <span class="add-on"><i class="icon-th"></i></span> 
+	     </div> 
     </div> 
     <div class="control-group">
-    <div id="timedesc2">截止时间：</div> 
-    <div id="lasttime"></div> 
-     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd"> 
-      <input id="dtp_input2" size="16" type="text" value="" readonly="" placeholder="截止时间"/> 
-      <span class="add-on"><i class="icon-remove"></i></span> 
-      <span class="add-on"><i class="icon-th"></i></span>
-     </div> 
+	    <div id="timedesc2">截止时间：</div> 
+	    <div id="lasttime"></div> 
+	     <div class="controls input-append date form_date" data-date="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd"> 
+	      <input id="dtp_input2" size="16" type="text" value="" readonly="" placeholder="截止时间"/> 
+	      <span class="add-on"><i class="icon-remove"></i></span> 
+	      <span class="add-on"><i class="icon-th"></i></span>
+	     </div> 
     </div> 
+    <div class="control-group">
+	    <div id="timedesc2">账 户 数：</div>
+	    <div id="earlytime"></div> 
+	     <div class="controls input-append"> 
+		  <input type="text" size="16" id="accountNumID" value="1">
+	      <span class="add-on"><i class="icon-remove"></i></span> 
+	      <span class="add-on"><i class="icon-pencil"></i></span>
+	     </div> 
+    </div>
    </form> 
    <form id="size">
    <div class="sizeline">
-    	<input id="sanyi1" name="sanyi" type="radio" value="1" checked/>
     	<label for="sanyi1">全选</label> 
+    	<input id="sanyi1" name="sanyi" type="radio" value="1" checked/>
     </div>
     <div class="sizeline">
-    	<input id="sanyi2" name="sanyi" type="radio" value="2" />
     	<label for="sanyi2">三亿以下</label>
+    	<input id="sanyi2" name="sanyi" type="radio" value="2" />
     </div>
    </form>
    </div>
@@ -71,8 +80,7 @@
 	   <input type="button" value="查看结果" onclick="Ajax();" />
 	   <input type="button" value="重新计算" onclick="Reset();" /> 
    </div> 
-   </div>
-   <!-- <button id="btn2">click</button> -->
+   </div> 
   </div>
   <div class="container">
 		<table id="disp"></table>
@@ -120,6 +128,7 @@
 	}
     var Ajax = function ()  
     {  
+    	accountnumber();
 		if(checkTime()){
 		if(!document.getElementById("disp").hasChildNodes()){
 			dataList = [];
@@ -134,10 +143,10 @@
               			$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");
               			if(parseInt(item.num/600000)>0){
               				// dataList.push(item.rate*item.max*10);
-              				dataList.push(1-Math.pow((1-item.rate/100),item.max*accountNum*10));
+              				dataList.push(1-Math.pow((1-item.rate/100),item.max*parseInt(accountNum)*10));
               			}else{
               				// dataList.push(item.rate*item.max*20);
-              				dataList.push(1-Math.pow((1-item.rate/100),item.max*accountNum*20));
+              				dataList.push(1-Math.pow((1-item.rate/100),item.max*parseInt(accountNum)*20));
               			}	
               			
               		}
@@ -146,10 +155,10 @@
               		$ ("#disp").append ("<tr><td>" + item.name +"</td><td>"+ item.num +"</td><td>"+ item.size +"</td><td>"+ item.max +"</td><td>"+ item.date +"</td><td>"+ item.rate + "</td></tr>");
 
               		if(parseInt(item.num/600000)>0){
-              				var qqq=1-Math.pow((1-item.rate/100),item.max*accountNum*10)
+              				var qqq=1-Math.pow((1-item.rate/100),item.max*parseInt(accountNum)*10)
               				dataList.push(qqq);
               			}else{
-              				var www=1-Math.pow((1-item.rate/100),item.max*accountNum*20)
+              				var www=1-Math.pow((1-item.rate/100),item.max*parseInt(accountNum)*20)
               				dataList.push(www);
               			}
               	};
@@ -158,9 +167,9 @@
         });
         } 
         setTimeout(function () {
-　　　　　no_one_at_least();
-					only_one_value();
-					at_least_two();
+　　　　　	no_one_at_least();
+			only_one_value();
+			at_least_two();
 　　　　}, 500);
       };
     }
@@ -190,14 +199,9 @@
 		}
 		return "0";
 	} 
-  // click2点击事件
-	// btn2.onclick=function(){
-	// 	// alert(getRadioBoxValue());
-	// 	no_one_at_least();
-	// 	only_one_value();
-	// 	at_least_two();
-	// 	checkTime();
-	// }
+	function accountnumber(){
+		accountNum=parseInt(document.getElementById("accountNumID").value);
+	}
 	function no_one_at_least(){
 		let base = 1;
 		dataList.forEach(function(item){
@@ -328,6 +332,7 @@ form {
 	display: none;
 }
 #size{
+	margin-top: 20px auto;
 	padding: 0 40px;
 	line-height: 15px;	
 }
