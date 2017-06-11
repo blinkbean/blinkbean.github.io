@@ -3,10 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>留言板</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+.h2{
+	margin-top: 30px;
+}
+</style>
 <body>
-	<h1>如果未正确出现留言页面</h1>
-	<h2>请联系1099811329@qq.com</h2>
+	<div class="container">
+		<div>
+		<p class="h2 text-info">点击提交即可成功给我们留言，并跳转至计算页面</p>
+		</div>
+		<form action="http://106.14.167.223:8081/stock/addword.jsp" method="post">
+		<div class="form-group">
+			<label for="content">留言内容：</label>
+			<textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="tele">联系方式：</label>
+			<input class="form-control" type="text" name="tele" id="tele">
+		</div>
+			
+			<input type="submit" class="btn btn-info pull-right" value="提交">
+		</form>
+	</div>
 </body>
-<script>window.location.href='106.14.167.223:8081/stock/addword.html';</script>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
