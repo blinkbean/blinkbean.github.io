@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>留言板</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../bootstrap/css/bootstrap.new.css" rel="stylesheet">
+</head>
+<style>
+.center{
+	margin-top:80px;
+	text-align: center;
+}
+a{
+	text-decoration: none;
+}
+</style>
+<body>
+	<div class="container">
+		<div class="center">
+		<h2>留言成功！</h2>
+		<span id="time">3</span> 
+		秒钟之后自动跳转，如果不跳转，请点击下面链接 
+		<a href="https://liyuxinger.github.io/stock/">计算页面</a>
+		</div>
+		 
+	</div>
+</body>
+<script>
+function delayURL() {
+var url="../";
+var delay=document.getElementById("time").innerHTML; 
+//最后的innerHTML不能丢，否则delay为一个对象 
+if(delay>0){ 
+delay--; 
+document.getElementById("time").innerHTML=delay; 
+}else{ 
+window.top.location.href=url; 
+}  
+}
+ setInterval("delayURL()",1000); 
+</script> 
+
+</html>
