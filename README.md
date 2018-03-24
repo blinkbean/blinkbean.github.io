@@ -8,7 +8,7 @@
 #### 主页
 * 作品展示
 
-  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/blog.png" width="600" height="350"/></p>
+  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/project.png" width="600" height="350"/></p>
 
 * 部分博客展示
 
@@ -16,7 +16,7 @@
 
 * 兴趣，爱好
 
-  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/hobby.png" width="600" height="350"/></p>
+  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/hobby.png" width="560" height="250"/></p>
   
 #### 日常练习-俄罗斯方块
 
