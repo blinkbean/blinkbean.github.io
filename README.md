@@ -8,27 +8,27 @@
 #### 主页
 * 作品展示
 
-<center>
+  <p align="center">
 <img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/blog.png" width="600" height="350"/>
-</center>
+  </p>
 
 * 部分博客展示
 
-<center>
+  <p align="center">
 <img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/blog.png" width="600" height="350"/>
-</center>
+  </p>
 
 * 兴趣，爱好
 
-<center>
+  <p align="center">
 <img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/hobby.png" width="600" height="350"/>
-</center>
+  </p>
 #### 日常练习-俄罗斯方块
 * 学习视屏教程的同时，增加自己所需功能，美化界面。
 
-<center><img src="http://img.blog.csdn.net/20170529214704334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl5dXhpbmc2NjM5ODAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="350" height="500" alt="图片描述文字"/></center>
+  <p align="center"><img src="http://img.blog.csdn.net/20170529214704334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl5dXhpbmc2NjM5ODAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="350" height="500" alt="图片描述文字"/>  </p>
 
-<center><img src="http://img.blog.csdn.net/20170529214749504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl5dXhpbmc2NjM5ODAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="350" height="500" alt="图片描述文字"/></center>
+  <p align="center"><img src="http://img.blog.csdn.net/20170529214749504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl5dXhpbmc2NjM5ODAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="350" height="500" alt="图片描述文字"/>  </p>
 
 
 #### 新股中签率——概率计算
@@ -49,7 +49,7 @@
 > * 2、当投资者的有效申购数量大于股票发行数量时，由交易所主机或承销商按每1000股有效申购确定一个申报配号，顺序排列，然后通过摇号抽签确定出中签号码，每个中签申购配号可认购1000股股票。
 
 * 计算依据（公式）
-<center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="350" height="700" alt="计算公式"/></center>
+  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="400" height="700" alt="计算公式"/>  </p>
 * 计算结果：
-<center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockErr.png" width="350" height="500" alt="选着日期越界"/></center>
-<center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockResult.png" width="350" height="520" alt="计算结果"/></center>
+  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockErr.png" width="350" height="500" alt="选着日期越界"/>  </p>
+  <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockResult.png" width="350" height="520" alt="计算结果"/>  </p>
