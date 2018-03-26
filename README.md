@@ -1,11 +1,18 @@
 # liyuxinger.github.io
 此文件夹用于存放可能经常访问的文件
 包括：
-* blog 主页
-* daily 日常练习
-* stock 股票概率计算（微信公众号链接到此部分,已停止更新数据，但仍可得到已有日期之间的结果）
+####blog ： [主页介绍]( #blog)  ||  [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
 
-#### 主页
+####daily ： [日常练习](#daily) ####
+#### stock ： [股票概率计算介绍](#stock) || [访问股票概率计算](https://liyuxinger.github.io/stock/ "stock 股票概率计算")####
+####  [实验室管理系统](https://github.com/liyuxinger/Laboratory-management-system "实验室管理系统") ####
+####  [信息社（仿慕课网）](https://github.com/liyuxinger/imitate-mooc "信息社（仿慕课网）") ####
+
+----------
+
+#### blog 主页
+<span id="daily"></span>
+
 * 作品展示
 
 <center>
@@ -24,6 +31,8 @@
 <img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/hobby.png" width="600" height="350"/>
 </center>
 #### 日常练习-俄罗斯方块
+<span id="daily"></span>
+
 * 学习视屏教程的同时，增加自己所需功能，美化界面。
 
 <center><img src="http://img.blog.csdn.net/20170529214704334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl5dXhpbmc2NjM5ODAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="350" height="500" alt="图片描述文字"/></center>
@@ -32,6 +41,8 @@
 
 
 #### 新股中签率——概率计算
+<span id="stock"></span>
+
 * 背景：
 > 新股就是指刚发行上市正常运作的股票。新上市的股票是一个热点，因为新股首日上市均有近100%左右的涨幅。近两年，"打新股"热度下降，甚至出现了新股上市首日跌破发行价的现象。这也使得"估价机构"重新按照市场价值规律来为新股定价，使之更趋合理。但是，目前新股一上市就连续几个涨停板，使得打新股热度出现上升。而新股又有几种常见的炒作规律：
 > 
@@ -49,7 +60,7 @@
 > * 2、当投资者的有效申购数量大于股票发行数量时，由交易所主机或承销商按每1000股有效申购确定一个申报配号，顺序排列，然后通过摇号抽签确定出中签号码，每个中签申购配号可认购1000股股票。
 
 * 计算依据（公式）
-<center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="350" height="700" alt="计算公式"/></center>
+<center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="400" height="700" alt="计算公式"/></center>
 * 计算结果：
 <center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockErr.png" width="350" height="500" alt="选着日期越界"/></center>
 <center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockResult.png" width="350" height="520" alt="计算结果"/></center>
