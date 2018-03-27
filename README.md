@@ -1,8 +1,11 @@
 ﻿# liyuxinger.github.io
+ 
+ <div id="top"></div>
+ 
 ##### 此文件夹用于存放可能经常访问的文件
 #####  包括：
 
-#### blog ： <a href="#blog">主页介绍</a>  ||  [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
+#### blog ： [主页介绍](#blog) || [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
 
 #### daily ： [日常练习](#daily) ####
 
@@ -14,8 +17,10 @@
 
 ----------
 
-#### blog 主页
 <div id="blog"></div>
+
+#### blog 主页
+
 
 * 作品展示
 
@@ -28,22 +33,22 @@
 * 兴趣，爱好
 
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/hobby.png" width="560" height="250"/></p>
-  
-#### 日常练习-俄罗斯方块
-<<<<<<< HEAD
+
+<a href="#top>[↑] 回到顶部</a>
+
 <div id="daily"></div>
 
-* 学习视屏教程的同时，增加自己所需功能，美化界面。
-=======
->>>>>>> 229adcba290cd14651e48b38cc68807afc6a3848
+#### 日常练习-俄罗斯方块
 
 * 学习视屏教程的同时，增加自己所需功能，美化界面。
 
   <p align="center"><img src="http://img.blog.csdn.net/20170529214749504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl5dXhpbmc2NjM5ODAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="350" height="500" alt="图片描述文字"/>  </p>
 
+<a href="#top>[↑] 回到顶部</a>
+
+<div id="stock"></div>
 
 #### 新股中签率——概率计算
-<div id="stock"></div>
 
 * 背景：
 > 新股就是指刚发行上市正常运作的股票。新上市的股票是一个热点，因为新股首日上市均有近100%左右的涨幅。近两年，"打新股"热度下降，甚至出现了新股上市首日跌破发行价的现象。这也使得"估价机构"重新按照市场价值规律来为新股定价，使之更趋合理。但是，目前新股一上市就连续几个涨停板，使得打新股热度出现上升。而新股又有几种常见的炒作规律：
@@ -69,3 +74,5 @@
 * 计算结果：
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockErr.png" width="350" height="500" alt="选着日期越界"/>  </p>
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockResult.png" width="420" height="620" alt="计算结果"/>  </p>
+
+<a href="#top>[↑] 回到顶部</a>
