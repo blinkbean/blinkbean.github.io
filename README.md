@@ -66,9 +66,9 @@
 > * 2、当投资者的有效申购数量大于股票发行数量时，由交易所主机或承销商按每1000股有效申购确定一个申报配号，顺序排列，然后通过摇号抽签确定出中签号码，每个中签申购配号可认购1000股股票。
 
 * 计算依据（公式）
-<<<<<<< HEAD
+
 <center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="400" height="700" alt="计算公式"/></center>
-=======
+
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="500" height="850" alt="计算公式"/>  </p>
 >>>>>>> 229adcba290cd14651e48b38cc68807afc6a3848
 * 计算结果：
