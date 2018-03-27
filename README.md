@@ -15,7 +15,7 @@
 ----------
 
 #### blog 主页
-<span id="daily"></span>
+<span id="blog"></span>
 
 * 作品展示
 
