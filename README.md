@@ -1,11 +1,15 @@
 ﻿# liyuxinger.github.io
-此文件夹用于存放可能经常访问的文件
-包括：
-####blog ： [主页介绍]( #blog)  ||  [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
+##### 此文件夹用于存放可能经常访问的文件
+#####  包括：
 
-####daily ： [日常练习](#daily) ####
-#### stock ： [股票概率计算介绍](#stock) || [访问股票概率计算](https://liyuxinger.github.io/stock/ "stock 股票概率计算")####
+#### blog ： [主页介绍]( #blog)  ||  [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
+
+#### daily ： [日常练习](#daily) ####
+
+#### stock ： [股票概率计算介绍](#stock) || [访问股票概率计算](https://liyuxinger.github.io/stock/ "stock 股票概率计算") ####
+
 ####  [实验室管理系统](https://github.com/liyuxinger/Laboratory-management-system "实验室管理系统") ####
+
 ####  [信息社（仿慕课网）](https://github.com/liyuxinger/imitate-mooc "信息社（仿慕课网）") ####
 
 ----------
