@@ -2,7 +2,7 @@
 ##### 此文件夹用于存放可能经常访问的文件
 #####  包括：
 
-#### blog ： [主页介绍]( #blog)  ||  [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
+#### blog ： <a href="#blog">主页介绍</a>  ||  [访问主页](https://liyuxinger.github.io/blog/ "blog 主页") ####
 
 #### daily ： [日常练习](#daily) ####
 
