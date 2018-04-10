@@ -13,7 +13,11 @@
 
 ####  [实验室管理系统](https://github.com/liyuxinger/Laboratory-management-system "实验室管理系统") ####
 
+<<<<<<< HEAD
 ####  [信息社（仿慕课网）](https://liyuxinger.github.io/imitatemooc/ "信息社（仿慕课网）") ####
+=======
+####  [信息社（仿慕课网）](https://liyuxinger.github.io/imitatemooc/ "信息社（仿慕课网）") ####
+>>>>>>> 657345bc0bfbe6d36be5f7cf5f4935e0f99e6269
 
 #### [那些年做过的海报&P过的图](https://liyuxinger.github.io/poster/"那些年做过的海报")
 
