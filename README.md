@@ -1,7 +1,7 @@
 ﻿# liyuxinger.github.io
- 
+
  <div id="top"></div>
- 
+
 ##### 此文件夹用于存放可能经常访问的文件
 #####  包括：
 
@@ -13,7 +13,9 @@
 
 ####  [实验室管理系统](https://github.com/liyuxinger/Laboratory-management-system "实验室管理系统") ####
 
-####  [信息社（仿慕课网）](https://github.com/liyuxinger/imitate-mooc "信息社（仿慕课网）") ####
+####  [信息社（仿慕课网）](https://liyuxinger.github.io/imitate-mooc/ "信息社（仿慕课网）") ####
+
+#### [那些年做过的海报](https://liyuxinger.github.io/poster/"那些年做过的海报")
 
 ----------
 
