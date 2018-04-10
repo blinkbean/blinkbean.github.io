@@ -69,10 +69,8 @@
 
 * 计算依据（公式）
 
-<center><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="400" height="700" alt="计算公式"/></center>
-
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockRely.png" width="500" height="850" alt="计算公式"/>  </p>
->>>>>>> 229adcba290cd14651e48b38cc68807afc6a3848
+
 * 计算结果：
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockErr.png" width="350" height="500" alt="选着日期越界"/>  </p>
   <p align="center"><img src="https://github.com/liyuxinger/liyuxinger.github.io/raw/master/introImg/stockResult.png" width="420" height="620" alt="计算结果"/>  </p>
