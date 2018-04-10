@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>**社团</title>
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/mycss.css">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+</head>
+<body class="home-template">
+<!-- 导航栏 -->
+ <div class="header ">
+	<div class="logo">
+		<a href="index.html">
+			<img src="../img/1.jpg" width="50px" height="40px" />
+		</a>
+	</div>
+    <div class="nav">
+			
+    	<ul>
+        	<li>
+        		<a href="#"><span class="glyphicon glyphicon-asterisk"></span>社团简介</a>
+        		<div class="two">
+        		<a href="#">部门构成</a>
+        		<a href="#">社团成员</a>
+        		<a href="#">活动集锦</a>
+        		<a href="#">社团简介</a>
+        		</div>
+        	</li>
+            <li>
+            <a href="#">柚子服务</a>
+            	<div class="two">
+            	<a href="#">失物招领</a>
+        		<a href="#">经验交流</a>
+        		<a href="#">人工服务</a>
+        		</div>
+            </li>
+            <li>
+            	<a href="#">事物办理</a>
+            	<div class="two">
+            	<a href="#">校园卡挂失</a>
+            	<a href="#">图书续借</a>
+            	<a href="#">校园卡转账</a>
+        		</div>
+            </li>
+            <li>
+            	<a href="#">信息查询</a>
+            	<div class="two">
+            	<a href="#">成绩查询</a>
+            	<a href="#">晨跑查询</a>
+        		<a href="#">校园卡</a>
+        		<a href="#"></a>
+        		<a href="#"></a>
+        		</div>
+           	</li>
+            <li>
+            	<a href="#">精彩回顾</a>
+            	<div class="two">
+        		<a href="#">优秀成果</a>
+            	<a href="#">往期新闻</a>
+            	<a href="#">活动记录</a>
+        		</div>
+            </li>
+            <li>
+            	<a href="login.html">登录</a>
+            </li>
+        </ul>
+    </div>
+</div>
+	<!-- header -->
+		<div class="content">
+
+      <div class="row">
+    	
+        <div class="col-md-6">
+            <div>
+              <h2>今日新闻</h2>
+            </div>
+            <div class="background-yellow radius">
+              <div class="box-group" id="accordion">
+                <div class="panel background-yellow">
+                    <h4>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        <br><span class="newpadding-title">南邮***</span>
+                      </a>
+                    </h4>
+                  <div id="collapseOne" class="panel-collapse collapse in newpadding-content">
+                      学校信息发布<br>1
+                      <span class="newdetail"><a href="#">查看详情</a></span>
+                  </div>
+                </div>
+                <div class="panel background-yellow">
+                    <h4 >
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        <span class="newpadding-title">*社团比赛安排</span>*
+                      </a>
+                    </h4>
+                  <div id="collapseTwo" class="panel-collapse collapse newpadding-content">
+                      比赛通知
+                      <span class="newdetail"><a href="#">查看详情</a></span>
+                  </div>
+                </div>
+                <div class="panel background-yellow">
+                    <h4>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <span class="newpadding-title">南邮社团成功举办。。。***</span>
+                      </a>
+                    </h4>
+                  <div id="collapseThree" class="panel-collapse collapse newpadding-content">
+                      通知内容
+                      <span class="newdetail"><a href="#">查看详情</a></span>
+                  </div>
+              </div>
+              <div class="panel background-yellow">
+                    <h4>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        <span class="newpadding-title">南邮***社团成功举办*</span>
+                      </a>
+                    </h4>
+                  <div id="collapseFour" class="panel-collapse collapse newpadding-content">
+                      通知内容
+                      <span class="newdetail"><a href="#">查看详情</a></span>
+                  </div>
+              </div>
+              <div class="panel background-yellow">
+                    <h4>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                        <span class="newpadding-title">南成功举办。邮***</span>
+                      </a>
+                    </h4>
+                  <div id="collapseFive" class="panel-collapse collapse newpadding-content">
+                      通知内容
+                      <span class="newdetail"><a href="#">查看详情</a></span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+	        </div>
+    </div>
+		
+		
+	<a href="javascript:;" id="btnn" title="回到顶部"></a>
+
+
+	<!-- copytight -->
+	<div class="copy-right">
+            <p>仙林校区地址：南京市亚东新城区文苑路9号 邮编：210023 三牌楼校区地址：南京市新模范马路66号 邮编：210003 锁金村校区地址：南京市龙蟠路177号 邮编：210042 </p>
+			<p style="text-align:center;margin:0px;padding:0px;margin-bottom:8px">Copyright &copy; Nanjing University of Posts and Telecommunications All Rights Reserved |<a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" style="font-size:13px;color:gray">苏ICP备11073489号-1</a> </p>
+        </div>
+
+
+
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/main.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".nav li").hover(function(){
+		$(".bg").stop().animate({height:0+$(this).children(".two").height()},300);
+		$(this).children(".two").stop().slideDown();
+
+	},function(){
+		$(".bg").stop().animate({height:0},300);
+		$(this).children(".two").stop().slideUp();
+	})
+})
+</script>
+</body>
+</html>
