@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>做过的海报P过的图</title>
-	
+	<style>
 	* {
 	  margin: 0;
 	  padding: 0;
@@ -76,12 +76,13 @@
 	</style>
 </head>
 <body>
-
+<canvas id="canvas"></canvas>
 <div class="copy">
     <h1 class="temp">开发中···</h1>
 </div>
 
 </body>
+<script>
 const el = document.getElementById('canvas');
 const ctx = el.getContext('2d');
 const dpr = window.devicePixelRatio || 1;
