@@ -211,9 +211,9 @@ function play68_submitScore(score) {
 	try{parent.__4399finishgame(str);}catch(e){}
 }
 function updateShare(bestScore) {
-	var descContent = "#插插插#刺激，在夹缝中生存！";
+	var descContent = "在夹缝中生存！";
    if(bestScore > 0) {
-		shareTitle = "我插了"+bestScore+"关，听说全世界只有4%的人玩得过第7关！";
+		shareTitle = "我玩了"+bestScore+"关，听说全世界只有4%的人玩得过第7关！";
 	}
 	else{
 		shareTitle = "听说全世界只有4%的人玩得过第7关...有点难！";
