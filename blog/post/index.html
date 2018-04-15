@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>做过的海报P过的图</title>
+	
+	* {
+	  margin: 0;
+	  padding: 0;
+	  border: 0;
+	}
+
+	html,
+	body {
+	  height: 100%;
+	}
+
+	body {
+	  cursor: pointer;
+	  -webkit-user-select: none;
+	     -moz-user-select: none;
+	      -ms-user-select: none;
+	          user-select: none;
+	  overflow: hidden;
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-align: center;
+	      -ms-flex-align: center;
+	          align-items: center;
+	  -webkit-box-pack: center;
+	      -ms-flex-pack: center;
+	          justify-content: center;
+	  background-image: -webkit-linear-gradient(left, #f3c3f5 0%, #f3f055 100%);
+	  background-image: linear-gradient(to right, #f3c3f5 0%, #f3f055 100%);
+	}
+
+	canvas {
+	  height: 100%;
+	  width: 100%;
+	}
+
+	.copy {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-align: center;
+	      -ms-flex-align: center;
+	          align-items: center;
+	  -webkit-box-pack: center;
+	      -ms-flex-pack: center;
+	          justify-content: center;
+	  text-align: center;
+	  pointer-events: none;
+	  z-index: 100;
+	}
+	.copy h1 {
+	  margin: 0;
+	  color: #6f86d6;
+	  letter-spacing: 1px;
+	  font-size: 4em;
+	  font-weight: 700;
+	  font-family: 'Futura', 'Helvetica Neue', Helvetica;
+	  background: -webkit-linear-gradient(bottom, #48c6ef 0%, #6f86d6 100%);
+	  background: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+	  background: -moz-linear-gradient(transparent, transparent);
+	  -webkit-background-clip: text;
+	  -webkit-text-fill-color: transparent;
+	}
+
+	</style>
+</head>
+<body>
+
+<div class="copy">
+    <h1 class="temp">开发中···</h1>
+</div>
+
+</body>
+const el = document.getElementById('canvas');
+const ctx = el.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+const pi = Math.PI;
+const points = 12;
+const radius = 200 * dpr;
+const h = 600 * dpr;
+const w = 600 * dpr;
+const center = {
+    x: w / 2 * dpr, 
+    y: h / 2 * dpr
+};
+const circles = [];
+const rangeMin = 1;
+const rangeMax = 30;
+const showPoints = true;
+
+let mouseY = 0;
+let tick = 0;
+
+const gradient1 = ctx.createLinearGradient(0, 0, w, 0);
+gradient1.addColorStop(0, '#96fbc4');
+gradient1.addColorStop(1, '#f9f586');
+
+const gradient2 = ctx.createLinearGradient(0, 0, w, 0);
+gradient2.addColorStop(0, '#48c6ef');
+gradient2.addColorStop(1, '#6f86d6');
+
+const gradient3 = ctx.createLinearGradient(0, 0, w, 0);
+gradient3.addColorStop(0, '#9795f0');
+gradient3.addColorStop(1, '#9be15d');
+
+const gradient4 = ctx.createLinearGradient(0, 0, w, 0);
+gradient4.addColorStop(0, '#f6d365');
+gradient4.addColorStop(1, '#fda085');
+
+const gradients = [ gradient1, gradient2, gradient3, gradient4 ];
+
+window.addEventListener('mousemove', handleMove, true);
+
+function handleMove(event) {
+    mouseY = event.clientY;
+}
+
+ctx.scale(dpr, dpr);
+
+el.width = w * dpr;
+el.height = h * dpr;
+el.style.width = w + 'px';
+el.style.height = h + 'px';
+
+// Setup swing circle points
+
+for (var idx = 0; idx <= gradients.length - 1; idx++) {
+  
+    let swingpoints = [];
+    let radian = 0;
+
+    for (var i = 0; i < points; i++){
+        radian = pi * 2 / points * i;
+        var ptX = center.x + radius * Math.cos(radian);
+        var ptY = center.y + radius * Math.sin(radian);
+
+        swingpoints.push({ 
+            x: ptX,
+            y: ptY,
+            radian: radian,
+            range: random(rangeMin, rangeMax),
+            phase: 0 
+        });
+    }
+  
+    circles.push(swingpoints);
+
+}
+
+// --------------------------------------------------------------------------- //
+// swingCircle
+
+function swingCircle() {
+    ctx.clearRect(0, 0, w * dpr, h * dpr);
+    
+    ctx.globalAlpha = 1;
+    // ctx.globalCompositeOperation = 'source-over';
+    ctx.globalCompositeOperation = 'screen';
+    
+    for (let k = 0; k < circles.length; k++) {
+        let swingpoints = circles[k];
+      
+        for (var i = 0; i < swingpoints.length; i++){
+            swingpoints[i].phase += random(1, 10) * -0.01;
+            
+            let phase = 4 * Math.sin(tick / 65);
+            
+            if (mouseY !== 0) {
+                phase = mouseY / 200 + 1;
+            }
+            
+            var r = radius + (swingpoints[i].range * phase * Math.sin(swingpoints[i].phase)) - rangeMax;
+            
+            swingpoints[i].radian += pi / 360;
+            
+            var ptX = center.x + r * Math.cos(swingpoints[i].radian);
+            var ptY = center.y + r * Math.sin(swingpoints[i].radian);
+    
+            if (showPoints === true) {
+                ctx.strokeStyle = '#96fbc4';
+
+                ctx.beginPath();
+                ctx.arc(ptX, ptY, 2 * dpr, 0, pi * 2, true);
+                ctx.closePath();
+                ctx.stroke();
+            }
+                
+            swingpoints[i] = {
+                x: ptX,
+                y: ptY,
+                radian: swingpoints[i].radian,
+                range: swingpoints[i].range,
+                phase: swingpoints[i].phase,
+            };
+        }
+
+        const fill = gradients[k];
+    
+        drawCurve(swingpoints, fill);
+      
+    }
+    
+    tick++;
+    
+    requestAnimationFrame(swingCircle);
+}
+
+requestAnimationFrame(swingCircle);
+
+
+// --------------------------------------------------------------------------- //
+// drawCurve
+
+function drawCurve(pts, fillStyle) {
+    ctx.fillStyle = fillStyle;
+    ctx.beginPath();
+    ctx.moveTo(
+        (pts[cycle( - 1, points)].x + pts[0].x) / 2,
+        (pts[cycle( - 1, points)].y + pts[0].y) / 2);
+    for (var i = 0; i < pts.length; i++){
+      
+        ctx.quadraticCurveTo(
+            pts[i].x,
+            pts[i].y,
+            (pts[i].x + pts[cycle(i + 1, points)].x) / 2,
+            (pts[i].y + pts[cycle(i + 1, points)].y) / 2);
+    }
+  
+  ctx.closePath();
+  ctx.fill();
+
+}
+
+// --------------------------------------------------------------------------- //
+// cycle
+function cycle( num1, num2 ) {
+    return ( num1 % num2 + num2 ) % num2;
+}
+
+// --------------------------------------------------------------------------- //
+// random
+function random (num1, num2) {
+    var max = Math.max(num1, num2);
+    var min = Math.min(num1, num2);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+</script>
+</html>
